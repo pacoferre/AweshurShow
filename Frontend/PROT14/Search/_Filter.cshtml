@@ -1,0 +1,42 @@
+﻿@model PROT14.Business.BusinessBase
+@{
+    string prefijoCampo = this.Request.Path.Contains("Informe") ? "Empresa_" : "";
+}
+@using (var context = Html.BeginScriptContext())
+{
+<div class="row">
+    <div class="small-12 medium-8 columns">
+        @Html.BuscarPara(Model, "Razon", prefijoCampo)
+    </div>
+    <div class="small-12 medium-4 columns">
+        @Html.BuscarPara(Model, "IDEmpresaTipo", prefijoCampo)
+    </div>
+</div>
+<div class="row">
+    <div class="small-12 medium-4 columns">
+        @Html.BuscarPara(Model, "CIF", prefijoCampo)
+    </div>
+    <div class="small-12 medium-4 columns">
+        @Html.BuscarPara(Model, "CodigoContabilidad", prefijoCampo)
+    </div>
+    <div class="small-12 medium-4 columns">
+        @Html.BuscarPara(Model, "CP", prefijoCampo)
+    </div>
+</div>
+<div class="row">
+    <div class="small-12 columns">
+        @Html.BuscarPara(Model, "Direccion", prefijoCampo)
+    </div>
+</div>
+<div class="row">
+    <div class="small-12 medium-4 columns">
+        @Html.BuscarPara(Model, "IDEmpresaSectorPrincipal", prefijoCampo)
+    </div>
+    <div class="small-12 medium-4 columns">
+        @Html.BuscarPara(Model, "IDEmpresaSectorSecundario", prefijoCampo)
+    </div>
+    <div class="small-12 medium-4 columns">
+        @Html.BuscarPara(Model, "IDEmpresaRanking", prefijoCampo)
+    </div>
+</div>
+}
