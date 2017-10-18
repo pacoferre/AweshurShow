@@ -1,0 +1,143 @@
+﻿@using PROT14.Business
+@model PROT14.Business.BusinessBase
+@{
+//BusinessBase objEDelegacion = Model.Coleccion("ColEmpresaDelegacion").ObjetoActivo;
+}
+
+<div style="display:none" id="dtEmpresaDelegacion_ColDefinition">
+    <div id="dtEmpresaDelegacion_Col1">
+        <div>
+            [DeleteItem_trf]
+            <span data-prop="ColEmpresaDelegacion!data[0]!DescripcionNormal"></span>
+        </div>
+        <div style="display:none">
+            <div class="row">
+                <div class="small-2 medium-2 columns">
+                    @Html.EditorPara(Model, "Principal", "ColEmpresaDelegacion")
+                </div>
+                <div class="small-10 medium-4 columns">
+                    @Html.EditorPara(Model, "Delegacion", "ColEmpresaDelegacion")
+                </div>
+                <div class="small-12 medium-6 columns">
+                    @Html.EditorPara(Model, "Direccion", "ColEmpresaDelegacion")
+                </div>
+            </div>
+            <div class="row">
+                <div class="small-6 medium-2 columns">
+                    @Html.EditorPara(Model, "CP", "ColEmpresaDelegacion")
+                </div>
+                <div class="small-6 medium-3 columns">
+                    @Html.EditorPara(Model, "IDPais", "ColEmpresaDelegacion")
+                </div>
+                <div class="small-12 medium-4 columns">
+                    @Html.EditorPara(Model, "Ciudad", "ColEmpresaDelegacion")
+                </div>
+                <div class="small-12 medium-3 columns">
+                    @Html.EditorPara(Model, "Provincia", "ColEmpresaDelegacion", new Dictionary<string, string> { { "rel", "prov" } } )
+                </div>
+            </div>
+            <div class="row">
+                <div class="small-6 medium-3 columns">
+                    @Html.EditorPara(Model, "Telefono", "ColEmpresaDelegacion")
+                </div>
+                <div class="small-6 medium-3 columns">
+                    @Html.EditorPara(Model, "Fax", "ColEmpresaDelegacion")
+                </div>
+                <div class="small-12 medium-6 columns">
+                    @Html.EditorPara(Model, "Observaciones", "ColEmpresaDelegacion")
+                </div>
+            </div>
+            <div class="row">
+                <div class="small-12 medium-6 columns">
+                    @Html.EditorPara(Model, "CIF", "ColEmpresaDelegacion")
+                </div>
+                <div class="small-12 medium-6 columns">
+                    @Html.EditorPara(Model, "CodigoContabilidad", "ColEmpresaDelegacion")
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div style="display:none" id="dtContacts_ColDefinition">
+    <div id="dtContacts_Col1">
+        <a href="/Edit/Contacto/data[0]">data[1]</a> <span class="l2">data[4]</span><br/>
+        <a href='mailto:"data[1]"<data[5]>'><i class="l2">data[5]</i></a><div class="fi-euro ddata[7]"></div><div class="fi-alert ddata[8]"></div>
+    </div>
+    <div id="dtContacts_Col2">
+        <div class="l1 oneline">data[2]</div>
+        <div class="l1 oneline">data[6]</div>
+    </div>
+</div>
+
+@Html.Partial("~/Views/CRUD/General/_ListaPrevisiones_Sup.cshtml")
+@Html.Partial("~/Views/CRUD/General/_ListaIncidencias_Sup.cshtml")
+@Html.Partial("~/Views/CRUD/General/_ListaAlertas_Sup.cshtml")
+
+<div id="addEmpresaDelegacionDiv" class="reveal-modal medium" data-reveal style="display:none">
+    @using (Ajax.BeginForm("", "", null, new AjaxOptions
+        {
+            HttpMethod = "POST"
+        }, new { id = "addEmpresaDelegacionForm", data_abide = "ajax" }))
+    {
+    <div class="row">
+        <div class="small-12 medium-4 columns">
+            @Html.EditorPara(Model, "Delegacion", "ColEmpresaDelegacion")
+        </div>
+        <div class="small-12 medium-8 columns">
+            @Html.EditorPara(Model, "Direccion", "ColEmpresaDelegacion")
+        </div>
+    </div>
+    <div class="row">
+        <div class="small-6 medium-2 columns">
+            @Html.EditorPara(Model, "CP", "ColEmpresaDelegacion")
+        </div>
+        <div class="small-6 medium-3 columns">
+            @Html.EditorPara(Model, "IDPais", "ColEmpresaDelegacion")
+        </div>
+        <div class="small-12 medium-4 columns">
+            @Html.EditorPara(Model, "Ciudad", "ColEmpresaDelegacion")
+        </div>
+        <div class="small-12 medium-3 columns">
+            @Html.EditorPara(Model, "Provincia", "ColEmpresaDelegacion", new Dictionary<string, string> { { "rel", "prov" } })
+        </div>
+    </div>
+    <div class="row">
+        <div class="small-6 medium-3 columns">
+            @Html.EditorPara(Model, "Telefono", "ColEmpresaDelegacion")
+        </div>
+        <div class="small-6 medium-3 columns">
+            @Html.EditorPara(Model, "Fax", "ColEmpresaDelegacion")
+        </div>
+        <div class="small-12 medium-6 columns">
+            @Html.EditorPara(Model, "Observaciones", "ColEmpresaDelegacion")
+        </div>
+    </div>
+    <div class="row">
+        <div class="small-12 medium-6 columns">
+            @Html.EditorPara(Model, "CIF", "ColEmpresaDelegacion")
+        </div>
+        <div class="small-12 medium-6 columns">
+            @Html.EditorPara(Model, "CodigoContabilidad", "ColEmpresaDelegacion")
+        </div>
+    </div>
+    }
+</div>
+
+<div id="rProveedores_template" style="display:none">
+    <div class="clearfix"></div>
+    <div class="tag-box secondary" data-cssprepend='tag-box' data-cssprop='ColEmpresaProveedor!data[0]!StringEstadoCss' data-ref="ColEmpresaProveedor!data[0]" onclick="doMethodREDelete(event, this);">
+        <span data-prop='ColEmpresaProveedor!data[0]!Proveedor'></span>
+        <a class="close">×</a>
+    </div>
+</div>
+
+@using (var context = Html.BeginScriptContext())
+{
+    context.AddScriptBlock(
+        @<script type="text/javascript">
+            setCollectionAdd('ColEmpresaDelegacion', 'addEmpresaDelegacionDiv', 'addEmpresaDelegacionForm', 'Nueva delegación', 'dtEmpresaDelegacion');
+            setAutocompleteEdit("[rel='prov']", undefined, "Provincias", 20);
+        </script>
+);
+}

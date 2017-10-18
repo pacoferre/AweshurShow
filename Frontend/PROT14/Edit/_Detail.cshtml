@@ -1,0 +1,163 @@
+﻿@using PROT14.Web.Util.DataTables
+@using PROT14.Business.FieldDefinition
+@model PROT14.Business.BusinessBase
+@{
+    DataTableConfigVm configColEmpresaDelegacion = new DataTableConfigVm("dtEmpresaDelegacion", Model, "ColEmpresaDelegacion");
+    DataTableConfigVm configContacts = new DataTableConfigVm("dtContacts", Model, "Contactos");
+    DataTableConfigVm configPrevisiones = new DataTableConfigVm("dtPrevisiones", Model, "Previsiones");
+    DataTableConfigVm configIncidencias = new DataTableConfigVm("dtIncidencias", Model, "Incidencias");
+    DataTableConfigVm configAlertas = new DataTableConfigVm("dtAlertas", Model, "Alertas");
+
+    configPrevisiones.RowCallBackCode = @"if (data[15] == '0') $(row).addClass('vivo');";
+    configIncidencias.RowCallBackCode = @"if (data[10] == '1') $(row).addClass('terminado');";
+}
+<div class="row">
+    <div class="medium-12 large-8 columns">
+        <section data-sname="Principal">
+            <div class="row">
+                <div class="small-12 medium-8 columns">
+                    @Html.EditorPara(Model, "Razon")
+                </div>
+                <div class="small-12 medium-4 columns">
+                    @Html.EditorPara(Model, "IDEmpresaTipo")
+                </div>
+            </div>
+            <div class="row">
+                <div class="small-12 medium-4 columns">
+                    @Html.EditorPara(Model, "IDEmpresaSectorPrincipal")
+                </div>
+                <div class="small-12 medium-4 columns">
+                    @Html.EditorPara(Model, "IDEmpresaSectorSecundario")
+                </div>
+                <div class="small-12 medium-4 columns">
+                    @Html.EditorPara(Model, "IDEmpresaRanking")
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="medium-12 large-4 columns">
+        <label id="lblProveedores">Proveedores <i class="fi-plus"></i></label>
+        <div id="rProveedores" data-sname="Proveedores" style="height:100px; overflow-y:auto; overflow-x:hidden">
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="medium-12 large-8 columns">
+        <ul class="tabs" data-tab role="tablist" id="myTabs" data-sname="Tabs">
+            <li class="tab-title active" role="presentational">
+                <a href="#panel-3" role="tab" tabindex="0" aria-selected="false" controls="panel-3">
+                    <span data-tooltip aria-haspopup="true" class="has-tip tip-top radius" title="Contactos"><i class="fi-address-book"></i>&nbsp;<sup><span data-prop='Contactos.Count'></span></sup></span>
+                </a>
+            </li>
+            <li class="tab-title" role="presentational">
+                <a href="#panel-4" role="tab" tabindex="0" aria-selected="false" controls="panel-4">
+                    <span data-tooltip aria-haspopup="true" class="has-tip tip-top radius" title="Previsiones"><i class="fi-euro"></i>&nbsp;<sup><span data-prop='PrevisionesVivas'></span></sup></span>
+                </a>
+            </li>
+            <li class="tab-title" role="presentational">
+                <a href="#panel-5" role="tab" tabindex="0" aria-selected="false" controls="panel-5">
+                    <span data-tooltip aria-haspopup="true" class="has-tip tip-top radius" title="Incidencias"><i class="fi-alert"></i>&nbsp;<sup><span data-prop='IncidenciasVivas'></span></sup></span>
+                </a>
+            </li>
+            <li class="tab-title" role="presentational">
+                <a href="#panel-6" role="tab" tabindex="0" aria-selected="false" controls="panel-6">
+                    <span data-tooltip aria-haspopup="true" class="has-tip tip-top radius" title="Alertas"><i class="fi-calendar"></i>&nbsp;<sup><span data-prop='Alertas.Count'></span></sup></span>
+                </a>
+            </li>
+            <li class="tab-title" role="presentational">
+                <a href="#panel-2" role="tab" tabindex="0" aria-selected="true" controls="panel-2" id="deg">
+                    <span data-tooltip aria-haspopup="true" class="has-tip tip-top radius" title="Delegaciones"><i class="fi-home"></i>&nbsp;<sup><span data-prop='ColEmpresaDelegacion.Count'></span></sup></span>
+                </a>
+            </li>
+            <li class="tab-title" role="presentational">
+                <a href="#panel-docs" role="tab" tabindex="0" aria-selected="false" controls="panel-docs">
+                    <span data-tooltip aria-haspopup="true" class="has-tip tip-top radius" title="Documentos"><i class="fi-paperclip"></i>&nbsp;<sup><span data-prop='ColDocumento.Count'></span></sup></span>
+                </a>
+            </li>
+        </ul>
+        <div class="tabs-content">
+            <section role="tabpanel" aria-hidden="false" class="content active" id="panel-3" data-sname="Contactos">
+                <div class="row">
+                    <div class="small-12 medium-5 columns">
+                        @Html.EditorPara(Model, "CIF")
+                    </div>
+                    <div class="small-12 medium-5 columns">
+                        @Html.EditorPara(Model, "CodigoContabilidad")
+                    </div>
+                    <div class="small-12 medium-2 columns">
+                        @Html.EditorPara(Model, "EsExtranjero")
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="small-12 columns" id="cContactos">
+                        @Html.Partial("~/Areas/Edit/Views/PROT14Web/_DataTablesEditor.cshtml", configContacts)
+                    </div>
+                </div>
+            </section>
+            <section role="tabpanel" aria-hidden="true" class="content" id="panel-4" data-sname="Previsiones">
+                <div class="row">
+                    <div class="small-12 columns" id="cPrevisiones">
+                        @Html.Partial("~/Areas/Edit/Views/PROT14Web/_DataTablesEditor.cshtml", configPrevisiones)
+                    </div>
+                </div>
+            </section>
+            <section role="tabpanel" aria-hidden="true" class="content" id="panel-5" data-sname="Incidencias">
+                <div class="row">
+                    <div class="small-12 columns" id="cIncidencias">
+                        @Html.Partial("~/Areas/Edit/Views/PROT14Web/_DataTablesEditor.cshtml", configIncidencias)
+                    </div>
+                </div>
+            </section>
+            <section role="tabpanel" aria-hidden="true" class="content" id="panel-6" data-sname="Alertas">
+                <div class="row">
+                    <div class="small-12 columns" id="cAlertas">
+                        @Html.Partial("~/Areas/Edit/Views/PROT14Web/_DataTablesEditor.cshtml", configAlertas)
+                    </div>
+                </div>
+            </section>
+            <section role="tabpanel" aria-hidden="true" class="content" id="panel-2" data-sname="Delegaciones">
+                <div class="row">
+                    <div class="small-12 columns" id="cDelegaciones">
+                        @Html.Partial("~/Areas/Edit/Views/PROT14Web/_DataTablesEditor.cshtml", configColEmpresaDelegacion)
+                    </div>
+                </div>
+            </section>
+            @Html.Partial("~/Views/CRUD/General/_FileUpload.cshtml", Model)
+        </div>
+    </div>
+    <div class="medium-12 large-4 columns" style="padding-right:0px">
+        @Html.Partial("~/Views/CRUD/General/_ListaProductos.cshtml", Model)
+    </div>
+</div>
+@using (var context = Html.BeginScriptContext())
+{
+    context.AddScriptBlock(
+        @<script type="text/javascript">
+    @Html.Raw(configContacts.JavaScriptInitialize("myTabs", "panel-3", "cContactos", true))
+    @Html.Raw(configPrevisiones.JavaScriptInitialize("myTabs", "panel-4", "cPrevisiones", true))
+    @Html.Raw(configIncidencias.JavaScriptInitialize("myTabs", "panel-5", "cIncidencias", true))
+    @Html.Raw(configAlertas.JavaScriptInitialize("myTabs", "panel-6", "cAlertas", true))
+    @Html.Raw(configColEmpresaDelegacion.JavaScriptInitialize("myTabs", "panel-2", "cDelegaciones", true))
+            setTabControl('myTabs', 'panel-3');
+            setRepeaterElement('', '', 'rProveedores', 'ColEmpresaProveedor', '@("/Edit/" + Model.NombreObjeto + "/Repeater/ColEmpresaProveedor")', '');
+            setAutocompleteAdd('lblProveedores', 'rProveedores', 'AddEmpresaProveedor', 'Dist', '180px');
+    editController.tableElements['@configColEmpresaDelegacion.Id'].trclickfunction = function () {
+        var tr = $(this);
+        if (tr.data('sDel') != '1') {
+            var divs = tr.find("td:first").children();
+
+            divs.eq(0).hide();
+            divs.eq(1).show();
+            tr.data('sDel', '1');
+        }
+    };
+    editController.postDoAction = function (action) {
+        if (action == "Add") {
+            $("#deg").click();
+
+            window.setTimeout(openNewDeg, 20);
+        }
+    };
+    </script>
+);
+}
