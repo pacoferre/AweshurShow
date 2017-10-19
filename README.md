@@ -1,4 +1,4 @@
 # Dosconf
-Some code examples for dosconf conference
+Some code examples for dosconf 2017 conference
 
-Sorry, old code, written in Spanish
+Sorry, old code, some written in Spanish :(
